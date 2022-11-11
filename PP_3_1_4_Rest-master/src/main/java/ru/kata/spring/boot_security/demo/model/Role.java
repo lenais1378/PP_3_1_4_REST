@@ -24,6 +24,10 @@ public class Role implements GrantedAuthority {
     @Column(name = "name", unique = true, length = 100)
     private String name;
 
+    @Transient
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
+
     @Override
     public String getAuthority() {
         return getName();
@@ -33,4 +37,5 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return name;
     }
+
 }
